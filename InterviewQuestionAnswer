@@ -1,0 +1,77 @@
+✅ Interview Questions and Answers
+1. What is the difference between NULL and 0?
+
+NULL represents a missing or unknown value.
+0 is a valid numerical value.
+Example:-SELECT * FROM table WHERE salary IS NULL; -- Checks for missing values
+
+2. What is a default constraint?
+
+It assigns a default value to a column if no value is provided during insertion.
+Example: CREATE TABLE employees (
+  emp_id INT,
+  salary INT DEFAULT 25000
+);
+
+3. How does IS NULL work?
+
+It is used to check whether a column contains a NULL value.
+Example: SELECT * FROM employees WHERE email IS NULL;
+
+4. How do you update multiple rows?
+
+Use the UPDATE command with a condition that matches multiple rows.
+Example: UPDATE employees SET department = 'Sales' WHERE department IS NULL;
+
+5. Can we insert partial values?
+
+Yes, we can insert into specific columns.
+The remaining columns take NULL or DEFAULT values.
+Example: INSERT INTO employees (emp_id, name) VALUES (6, 'Sana');
+
+
+6. What happens if a NOT NULL field is left empty?
+
+The database throws an error.
+Example:
+INSERT INTO employees (emp_id, department) VALUES (7, 'IT');
+-- Error: 'name' column is NOT NULL but not provided
+
+7. How do you rollback a deletion?
+
+Use BEGIN TRANSACTION and ROLLBACK to undo.
+Example: BEGIN TRANSACTION;
+DELETE FROM employees WHERE emp_id = 3;
+ROLLBACK;
+
+8. Can we insert values into specific columns only?
+
+Yes. You can specify column names in the INSERT INTO statement.
+Example: INSERT INTO employees (emp_id, name) VALUES (8, 'Ramesh');
+
+9. How to insert values using SELECT?
+
+Use INSERT INTO ... SELECT ... syntax.
+Example: INSERT INTO employees (emp_id, name, department, salary, email)
+SELECT 9, 'Copy John', department, salary, email
+FROM employees
+WHERE emp_id = 1;
+
+
+10. What is ON DELETE CASCADE?
+
+It is a foreign key constraint that deletes child rows when the parent row is deleted.
+Example: CREATE TABLE orders (
+  order_id INT,
+  emp_id INT,
+  FOREIGN KEY (emp_id) REFERENCES employees(emp_id) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
