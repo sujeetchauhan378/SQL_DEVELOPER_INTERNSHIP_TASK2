@@ -1,0 +1,56 @@
+-- Step 1: Create a Table
+CREATE TABLE employees (
+    emp_id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    department TEXT,
+    salary INTEGER DEFAULT 25000,
+    email TEXT
+);
+
+-- Step 2: Insert full rows with values
+INSERT INTO employees (emp_id, name, department, salary, email)
+VALUES 
+(1, 'John Doe', 'HR', 40000, 'john@example.com'),
+(2, 'Jane Smith', 'Finance', NULL, 'jane@example.com'),
+(3, 'Ali Khan', 'IT', 50000, NULL),
+(4, 'Ravi Kumar', NULL, 30000, 'ravi@example.com');
+
+-- Step 3: Insert partial values using NULL/DEFAULT
+-- Only name is provided, others will be NULL or use DEFAULT
+INSERT INTO employees (emp_id, name)
+VALUES (5, 'Sara Ali');
+
+-- Step 4: Update NULL values
+-- Set salary to 28000 where salary is NULL
+UPDATE employees
+SET salary = 28000
+WHERE salary IS NULL;
+
+-- Set department to 'General' where department is NULL
+UPDATE employees
+SET department = 'General'
+WHERE department IS NULL;
+
+-- Step 5: Delete a row (example: delete Ravi Kumar)
+DELETE FROM employees
+WHERE emp_id = 4;
+
+-- Step 6: Insert using SELECT from another row
+INSERT INTO employees (emp_id, name, department, salary, email)
+SELECT 6, 'Copy of John', department, salary, email
+FROM employees
+WHERE emp_id = 1;
+
+-- Step 7: Demonstrate rollback (if using transaction - optional)
+-- BEGIN TRANSACTION;
+-- DELETE FROM employees WHERE emp_id = 2;
+-- ROLLBACK;
+
+
+📌 Summary of Actions:
+Created a table with NULL, NOT NULL, and DEFAULT handling.
+Inserted data with full, partial, and NULL values.
+Updated rows where fields were NULL.
+Deleted a specific row.
+Used SELECT inside an INSERT.
+
